@@ -8,7 +8,7 @@ namespace FlowerSales.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; } = null!;
+        public string? Id { get; set; } 
         public string Name { get; set; } = null!;
         public string StoreLocation { get; set; } = null!;
         public int PostCode { get; set; }
@@ -16,10 +16,7 @@ namespace FlowerSales.Models
         public bool IsAvailable { get; set; }
 
         [BsonRepresentation(BsonType.ObjectId)]
-        public string CategoryId { get; set; } = null!;
-
-        [JsonIgnore]
-        public virtual Category? Category { get; set; }  
+        public string? CategoryId { get; set; } 
 
     }
 }

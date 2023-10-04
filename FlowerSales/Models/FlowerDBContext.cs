@@ -28,12 +28,12 @@ namespace FlowerSales.Models
             foreach (var categoryEF in CategoryEF)
             {
                 var category = MongoDBConverter.ConvertToBSONCategory(categoryEF);
-                mongoDBContext.Categories.InsertOne(category);
+                mongoDBContext._categoryCollection.InsertOne(category);
 
                 foreach (var productEF in categoryEF.Products)
                 {
                     var product = MongoDBConverter.ConvertToBSONProduct(productEF);
-                    mongoDBContext.Products.InsertOne(product);
+                    mongoDBContext._productCollection.InsertOne(product);
                 }
             }
 

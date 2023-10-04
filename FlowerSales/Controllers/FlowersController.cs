@@ -3,6 +3,8 @@ using FlowerSales.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 
 namespace FlowerSales.Controllers
 {
@@ -10,7 +12,7 @@ namespace FlowerSales.Controllers
     [ApiController]
     public class FlowersController : ControllerBase
     {
-        private readonly FlowerDBContext _flowerContext;
+
         private readonly MongoDBContext _mongoDbService;
 
         public FlowersController(MongoDBContext mongoDbService)
@@ -18,15 +20,19 @@ namespace FlowerSales.Controllers
             _mongoDbService = mongoDbService;            
         }
 
-        public FlowersController(FlowerDBContext flowerContext)
-        {
-            _flowerContext = flowerContext;
-            _flowerContext.Database.EnsureCreated();
-        }
+
         [HttpGet]
-        public async Task<ActionResult> GetAllProducts2()
+        public async Task<List<Category>> Get()
         {
-            return Ok(_mongoDbService.Products);
+            return await _mongoDbService._categoryCollection.Find(new BsonDocument()).ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Category category)
+        {
+            await _mongoDbService._categoryCollection.InsertOneAsync(category);           
+            
+            return CreatedAtAction(nameof(Get), new { id = category.Id }, category);
         }
 
         //[HttpGet]

@@ -10,7 +10,9 @@ namespace FlowerSales.Models
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonPropertyName("Id")]
-        public string Id { get; set; } = null!;
+        public string? Id { get; set; } 
+
+        [BsonElement("CategoryName")]
         public string CategoryName { get; set; } 
 
         [BsonIgnoreIfDefault]
