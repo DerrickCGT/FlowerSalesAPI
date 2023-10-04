@@ -1,7 +1,13 @@
 using FlowerSales.Models;
 using Microsoft.EntityFrameworkCore;
+using FlowerSales.Services;
+
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDB"));
+builder.Services.AddSingleton<MongoDBContext>();
+
 
 // Add services to the container.
 

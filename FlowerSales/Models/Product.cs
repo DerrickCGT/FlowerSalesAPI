@@ -1,16 +1,22 @@
 ﻿using System.Text.Json.Serialization;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace FlowerSales.Models
 {
     public class Product
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string StoreLocation { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string StoreLocation { get; set; } = null!;
         public int PostCode { get; set; }
         public decimal Price { get; set; }
         public bool IsAvailable { get; set; }
-        public int CategoryId { get; set; }
+
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string CategoryId { get; set; } = null!;
 
         [JsonIgnore]
         public virtual Category? Category { get; set; }  
