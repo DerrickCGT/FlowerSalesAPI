@@ -8,15 +8,16 @@ namespace FlowerSales.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; set; } 
-        public string Name { get; set; } = null!;
-        public string StoreLocation { get; set; } = null!;
-        public int PostCode { get; set; }
-        public decimal Price { get; set; }
-        public bool IsAvailable { get; set; }
+        public string? _id { get; set; } 
+        public string name { get; set; } = null!;
+        public string storeLocation { get; set; } = null!;
+        public int postcode { get; set; }
+        public decimal price { get; set; }
+        public bool isAvailable { get; set; }
 
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string? CategoryId { get; set; } 
+        //[BsonRepresentation(BsonType.ObjectId)]
+        //public string? CategoryId { get; set; } 
 
+        public string categoryName { get; set; } = null!;
     }
 }

@@ -18,12 +18,22 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
+// Useless for current project as it is a modelseedbuilder SQL database
 builder.Services.AddDbContext<FlowerDBContext>(options =>
 {
     options.UseInMemoryDatabase("FlowerShop");
 });
 
 var app = builder.Build();
+
+// initialise FlowerDBSeed for the first time and execute method SeedProductsIfNotExists()
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var flowerDBSeed = services.GetRequiredService<FlowerDBSeed>();
+    flowerDBSeed.SeedProductsIfNotExists();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

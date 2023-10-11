@@ -8,14 +8,13 @@ namespace FlowerSales.Services
         public static Product ConvertToBSONProduct(ProductEF product)
         {
             return new Product
-            {
-                Id = product.Id.ToString(),
-                Name = product.Name,
-                StoreLocation = product.StoreLocation,
-                PostCode = product.PostCode,
-                Price = product.Price,
-                IsAvailable = product.IsAvailable,
-                CategoryId = product.CategoryId.ToString()
+            {                
+                name = product.Name,
+                storeLocation = product.StoreLocation,
+                postcode = product.PostCode,
+                price = product.Price,
+                isAvailable = product.IsAvailable,
+                categoryName = product.CategoryId.ToString()
             };
         }
 

@@ -13,26 +13,26 @@ namespace FlowerSales.Controllers
     public class FlowersController : ControllerBase
     {
 
-        private readonly MongoDBContext _mongoDbService;
+        private readonly IMongoCollection<Product> _productCollection;
 
         public FlowersController(MongoDBContext mongoDbService)
         {
-            _mongoDbService = mongoDbService;            
+            _productCollection = mongoDbService._productCollection;            
         }
 
 
         [HttpGet]
-        public async Task<List<Category>> Get()
+        public async Task<List<Product>> Get()
         {
-            return await _mongoDbService._categoryCollection.Find(new BsonDocument()).ToListAsync();
+            return await _productCollection.Find(new BsonDocument()).ToListAsync();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Category category)
+        public async Task<IActionResult> Post([FromBody] Product product)
         {
-            await _mongoDbService._categoryCollection.InsertOneAsync(category);           
+            await _productCollection.InsertOneAsync(product);           
             
-            return CreatedAtAction(nameof(Get), new { id = category.Id }, category);
+            return CreatedAtAction(nameof(Get), new { id = product._id }, product);
         }
 
         //[HttpGet]
