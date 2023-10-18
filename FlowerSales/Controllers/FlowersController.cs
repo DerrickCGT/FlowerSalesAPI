@@ -30,11 +30,11 @@ namespace FlowerSales.Controllers
         //    return Ok(_productCollection.AsQueryable());
         //}
 
-        //// Async method on IQueryable do not support ToListAsync with System.InvalidOperationException.
-        //// This method work without async and mainly IActionResult or ActionResult
+        // Async method on IQueryable do not support ToListAsync with System.InvalidOperationException.
+        // This method work without async and mainly IActionResult or ActionResult
         //[HttpGet]
         //[Route("test2")]
-        //public async Task<ActionResult> GetAllProducts2([FromQuery] ProductQueryParameters queryParameters)
+        //public ActionResult GetAllProducts2([FromQuery] ProductQueryParameters queryParameters)
         //{
         //    IQueryable<Product> products = _productCollection.AsQueryable();
 
@@ -67,15 +67,15 @@ namespace FlowerSales.Controllers
 
         //    if (!string.IsNullOrEmpty(queryParameters.SortBy) && queryParameters.SortOrder == "asc")
         //    {
-        //        products = products.OrderByCustom(queryParameters.SortBy, queryParameters.SortOrder);
+        //        products = products.OrderByCustom(queryParameters.SortBy, queryParameters.SortOrder); // not working
         //    }
 
-        //    products = products                
+        //    products = products
         //            .Skip(queryParameters.Size * (queryParameters.Page - 1))
         //            .Take(queryParameters.Size);
-                    
 
-        //    return Ok(await products.ToListAsync());
+
+        //    return Ok(products.ToList());
         //}
 
         [HttpGet]        
