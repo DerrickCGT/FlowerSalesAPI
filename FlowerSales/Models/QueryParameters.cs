@@ -3,7 +3,7 @@
     public class QueryParameters
     {
         const int _maxSize = 100;
-        private int _size = 50;
+        private int _size = 10;
 
         public int Page { get; set; } = 1;
 
@@ -16,7 +16,7 @@
             }
         }
 
-        public string SortBy { get; set; } = "Id";
+        public string SortBy { get; set; } = "name";
 
         private string _sortOrder = "asc";
         public string SortOrder

@@ -1,6 +1,6 @@
 ﻿namespace FlowerSales.Models
 {
-    public class ProductQueryParameters
+    public class ProductQueryParameters: QueryParameters
     {
 
         public decimal? MinPrice { get; set; }

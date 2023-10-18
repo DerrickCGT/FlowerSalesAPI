@@ -20,7 +20,6 @@ namespace FlowerSales.Models
                 // Define your product data here
                 var products = new List<Product>
                 {
-                    new Product { name = "Flowers in the city", storeLocation = "Canning Vale", postcode = 6155, price = 68.0M, isAvailable = true, categoryName = "Bouquetes" },
                     new Product { categoryName = "Bouquetes", name = "Flowers in the city", storeLocation = "Canning Vale", postcode = 6155, price = 68, isAvailable = true },
                     new Product { categoryName = "Bouquetes", name = "Gerberas", storeLocation = "Willeton", postcode = 6155, price = 35, isAvailable = true },
                     new Product { categoryName = "Bouquetes", name = "Aziatic Lilies", storeLocation = "Palmyra", postcode = 6123, price = 33, isAvailable = true },
@@ -44,7 +43,7 @@ namespace FlowerSales.Models
                     new Product { categoryName = "Wrapps", name = "Peach Zinnia", storeLocation = "North Freo", postcode = 6126, price = 2.8M, isAvailable = true },
                     new Product { categoryName = "Wrapps", name = "Raspberry Zinnia", storeLocation = "Munster", postcode = 6127, price = 2.8M, isAvailable = true },
                     new Product { categoryName = "Wrapps", name = "Snapdragon big", storeLocation = "Coogee", postcode = 6128, price = 2.8M, isAvailable = true },
-                    new Product { categoryName = "Single Flower", name = " Petunia", storeLocation = "South Freo", postcode = 6129, price = 24.99M, isAvailable = true },
+                    new Product { categoryName = "Single Flower", name = "Petunia", storeLocation = "South Freo", postcode = 6129, price = 24.99M, isAvailable = true },
                     new Product { categoryName = "Additional", name = "Dahlia (long lasting)", storeLocation = "City", postcode = 6112, price = 9.99M, isAvailable = true },
                     new Product { categoryName = "Additional", name = "Dahlia", storeLocation = "West Perth", postcode = 6130, price = 12.49M, isAvailable = true },
                     new Product { categoryName = "Additional", name = "Orchid domestic", storeLocation = "East Perth", postcode = 6131, price = 13.99M, isAvailable = true },
