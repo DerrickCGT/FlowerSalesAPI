@@ -16,20 +16,20 @@ builder.Services.AddScoped<FlowerDBSeed>();
 //Add services to the container.
 
 builder.Services.AddControllers();
-//builder.Services.AddApiVersioning(options =>
-//{
-//    options.ReportApiVersions = true;
-//    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-//    options.AssumeDefaultVersionWhenUnspecified = true;
+builder.Services.AddApiVersioning(options =>
+{
+    options.ReportApiVersions = true;
+    options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
+    options.AssumeDefaultVersionWhenUnspecified = true;
 
-//    options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
-//});
+    options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
+});
 
-//builder.Services.AddVersionedApiExplorer(options =>
-//{   // this says we have V and then the version number
-//    options.GroupNameFormat = "'v'VVV";
-//    options.SubstituteApiVersionInUrl = true;
-//});
+builder.Services.AddVersionedApiExplorer(options =>
+{   // this says we have V and then the version number
+    options.GroupNameFormat = "'v'VVV";
+    options.SubstituteApiVersionInUrl = true;
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
