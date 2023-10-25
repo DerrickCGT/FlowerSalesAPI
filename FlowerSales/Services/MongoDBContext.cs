@@ -9,7 +9,6 @@ namespace FlowerSales.Services
     {
         // Initialise _productCollection using MongoDB Driver type IMongoCollection
         public IMongoCollection<Product> _productCollection;
-        public IMongoCollection<Category> _categoryCollection;
 
         public MongoDBContext(IOptions<MongoDBSettings> mongoDBSettings)
         {
@@ -21,7 +20,6 @@ namespace FlowerSales.Services
 
             // Passing collection ("products") from MongoDB Databse ("flowers_db")
             _productCollection = database.GetCollection<Product>(mongoDBSettings.Value.ProductCollectionName);
-            _categoryCollection = database.GetCollection<Category>(mongoDBSettings.Value.CategoryCollectionName);
             
         }
 

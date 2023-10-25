@@ -9,8 +9,8 @@ using MongoDB.Driver;
 namespace FlowerSales.Controllers
 {
     [ApiVersion("1.0")]
-    //[Route("api/[controller]")]
-    //[Route("v{v:apiVersion}/products")]
+    //[route("api/[controller]")]
+    //[route("v{v:apiversion}/products")]
     [Route("products")]
     [ApiController]
     public class FlowersV1Controller : ControllerBase
@@ -134,7 +134,23 @@ namespace FlowerSales.Controllers
             }
 
             return Ok(product);
-        }   
+        }
+
+        [HttpGet]
+        [Route("GetMultiple")]
+        public async Task<ActionResult<Product>> GetProduct([FromQuery] string[] id)
+        {
+            var filter = Builders<Product>.Filter.In("_id", id); // Assuming _id is of type string
+
+            var product = await _productCollection.Find(filter).ToListAsync();
+
+            if (product.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(product);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Product product)
@@ -198,6 +214,55 @@ namespace FlowerSales.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete]
+        [Route("DeleteMultiple")]
+        public async Task<IActionResult> DeleteMultiple([FromQuery] string[] ids)
+        {
+            //var filter = Builders<Product>.Filter.Empty;
+
+            //foreach (var id in ids)
+            //{
+            //    filter &= Builders<Product>.Filter.Eq("_id", id);
+            //}
+
+            var filter = Builders<Product>.Filter.In("_id", ids);
+            var notFoundIds = new List<string>();
+
+
+            // Delete the filter from the database
+            var result = await _productCollection.DeleteManyAsync(filter);
+
+            if (result.DeletedCount != ids.Length)
+            {
+                return BadRequest("Error! Some of the provided IDs were not found.");
+            }
+
+            if (result.DeletedCount == 0)
+            {
+                return NotFound(); // Return notfound if none deleted
+            }
+
+            //else
+            //{
+            //    foreach (var id in ids)
+            //    {
+            //        var count = result.De(id);
+            //        if (count == 0)
+            //        {
+            //            notFoundIds.Add(id);
+            //        }
+            //    }
+
+            //    if (notFoundIds.Count > 0)
+            //    {
+            //        return BadRequest($"The following IDs were not found: {string.Join(", ", notFoundIds)}");
+            //    }
+            //}
+
+            return NoContent();
+        }
+
     }
 
     [ApiVersion("2.0")]
@@ -330,6 +395,7 @@ namespace FlowerSales.Controllers
 
             // Delete the filter from the database
             var result = await _productCollection.DeleteOneAsync(filter);
+            
 
             if (result.DeletedCount == 0)
             {
