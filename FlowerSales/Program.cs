@@ -22,9 +22,9 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
 
-    //options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
+    options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
 
-    options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
+    //options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
 
 });
 
@@ -38,7 +38,13 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
+builder.Services.AddCors(option =>
+{
+    option.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("https://localhost:7260").WithHeaders("FlowerMongo-Api-Version");
+    });
+});
 
 var app = builder.Build();
 
@@ -64,6 +70,8 @@ else
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors();
 
 app.MapControllers();
 
