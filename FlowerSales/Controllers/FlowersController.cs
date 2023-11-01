@@ -161,7 +161,8 @@ namespace FlowerSales.Controllers
         }
 
 
-        [HttpPut("{id}")]
+        [HttpPut, Route("Update")]
+
         public async Task<ActionResult<Product>> Put([FromBody] Product updatedProduct, string id)
         {
             var filter = Builders<Product>.Filter.Eq("_id", id); // Create a filter to find the product by ID

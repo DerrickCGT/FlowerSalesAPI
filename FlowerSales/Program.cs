@@ -22,9 +22,9 @@ builder.Services.AddApiVersioning(options =>
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
 
-    //options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
+    options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
 
-    options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
+    //options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
 
 });
 
