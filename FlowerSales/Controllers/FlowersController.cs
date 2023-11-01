@@ -9,8 +9,8 @@ using MongoDB.Driver;
 namespace FlowerSales.Controllers
 {
     [ApiVersion("1.0")]
-    //[route("api/[controller]")]
-    //[route("v{v:apiversion}/products")]
+    //[Route("api/[controller]")]
+    //[Route("v{v:apiversion}/products")]
     [Route("products")]
     [ApiController]
     public class FlowersV1Controller : ControllerBase
