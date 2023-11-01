@@ -42,7 +42,7 @@ builder.Services.AddCors(option =>
 {
     option.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("https://localhost:7260").WithHeaders("FlowerMongo-Api-Version");
+        builder.WithOrigins("https://localhost:7260").WithHeaders("X-API-version");
     });
 });
 

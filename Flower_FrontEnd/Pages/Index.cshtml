@@ -18,13 +18,17 @@
 
         let flowerList = document.getElementById("flowerList")
 
-        fetch(url)
-            .then(response => response.json())
-            .then(data => showFlower(data))
-            .catch(ex => {
-                alert("error");
-                console.error(ex);
-            });
+        fetch(url, {
+            headers: {
+                "X-API-version": "2"
+            }
+        })  
+        .then(response => response.json())
+        .then(data => showFlower(data))
+        .catch(ex => {
+            alert("error");
+            console.error(ex);
+        });
 
         const showFlower = (products) => {
             products.forEach(product => {
@@ -51,9 +55,7 @@
         //         console.error(ex);
         //         alert("An error occurred while fetching data.");
         //     }
-
-
-            
+                    
         // })
         
 
@@ -65,7 +67,6 @@
         //         flowerList.appendChild(li);
         //     });
         // };
-
 
 
     </script>
