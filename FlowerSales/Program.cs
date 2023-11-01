@@ -42,7 +42,7 @@ builder.Services.AddCors(option =>
 {
     option.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("https://localhost:7260").WithHeaders("X-API-version");
+        builder.WithOrigins("https://localhost:7129").WithHeaders("X-API-version");
     });
 });
 

@@ -1,0 +1,73 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<ul id="flowerList"></ul>
+
+@section Scripts{
+    <script>
+
+        let url = "https://localhost:7059/products"
+
+        let flowerList = document.getElementById("flowerList")
+
+        fetch(url, {
+            headers: {
+                "X-API-version": "2"
+            }
+        })  
+        .then(response => response.json())
+        .then(data => showFlower(data))
+        .catch(ex => {
+            alert("error");
+            console.error(ex);
+        });
+
+        const showFlower = (products) => {
+            products.forEach(product => {
+                let li = document.createElement("li");
+                let text = `${product.name}:(\$${product.price})`;
+                li.appendChild(document.createTextNode(text));
+                flowerList.appendChild(li);
+            })
+        }
+
+        // document.addEventListener("DOMContentLoaded", async function () {
+        //     let url = "https://localhost:7059/products";
+
+        //     let flowerList = document.getElementById("flowerList");
+
+        //     try {
+        //         const response = await fetch(url);
+        //         if (!response.ok) {
+        //             throw new Error("Network response was not ok.");
+        //         }
+        //         const data = await response.json();
+        //         showFlower(data);
+        //     } catch (ex) {
+        //         console.error(ex);
+        //         alert("An error occurred while fetching data.");
+        //     }
+                    
+        // })
+        
+
+        // function showFlower(products) {
+        //     produts.forEach(product => {
+        //         let li = document.createElement("li");
+        //         let text = `${products.name}:(\$${product.price})`;
+        //         li.appendChild(document.createTextNode(text));
+        //         flowerList.appendChild(li);
+        //     });
+        // };
+
+
+    </script>
+}

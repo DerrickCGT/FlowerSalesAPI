@@ -5,7 +5,7 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FlowerSales", "FlowerSales\FlowerSales.csproj", "{CA25043F-09D9-4377-8F84-CF584571114A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flower_FrontEnd", "Flower_FrontEnd\Flower_FrontEnd.csproj", "{7D455042-6A76-453C-B606-5406ACCBD265}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlowerWeb_APP", "FlowerWeb_APP\FlowerWeb_APP.csproj", "{8A32D067-235F-4E0C-91AE-C871190BD3C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{CA25043F-09D9-4377-8F84-CF584571114A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA25043F-09D9-4377-8F84-CF584571114A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA25043F-09D9-4377-8F84-CF584571114A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7D455042-6A76-453C-B606-5406ACCBD265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D455042-6A76-453C-B606-5406ACCBD265}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D455042-6A76-453C-B606-5406ACCBD265}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D455042-6A76-453C-B606-5406ACCBD265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A32D067-235F-4E0C-91AE-C871190BD3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A32D067-235F-4E0C-91AE-C871190BD3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A32D067-235F-4E0C-91AE-C871190BD3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A32D067-235F-4E0C-91AE-C871190BD3C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
