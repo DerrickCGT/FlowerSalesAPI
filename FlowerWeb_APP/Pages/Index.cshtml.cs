@@ -7,16 +7,18 @@ namespace FlowerWeb_APP.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public string FlowerName { get; set; }  
+        public string SearchType { get; set; }  
+        public string SearchTerm { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
 
-        public void OnGet(string name)
+        public void OnGet(string searchType, string searchTerm)
         {
-            FlowerName = name;
+            SearchType = searchType;
+            SearchTerm = searchTerm;
         }
     }
 }

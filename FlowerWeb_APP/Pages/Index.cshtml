@@ -1,7 +1,7 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = Model.FlowerName != null ? "Search results" : "Home page";
+    ViewData["Title"] = Model.SearchType != null ? "Search results" : "Home page";
 }
 
 <div class="text-center">
@@ -18,11 +18,16 @@
 
 @section Scripts{
     <script>
-
         const params = new URLSearchParams(window.location.search);
-        const flowerName = params.get('flowerName');
+        const searchTerm = params.get('searchTerm');
+        const searchType = params.get('searchType')
 
-        let url = `https://localhost:7059/products${flowerName ? '?Name=' + encodeURIComponent(flowerName) : ''}`;
+        let baseUrl = `https://localhost:7059/products`;
+
+        let url = baseUrl;
+        if (searchType && searchTerm) {
+            url += `?${searchType}=${encodeURIComponent(searchTerm)}`;
+        } 
 
         let flowerList = document.getElementById("flowerList")
 
@@ -37,18 +42,6 @@
             alert("error" + ex);
             console.error(ex);
         });
-
-        // const showFlower = (products) => {
-
-        //     flowerList.innerHTML = '';
-
-        //     products.forEach(product => {
-        //         let li = document.createElement("li");
-        //         let text = `${product.name}:(\$${product.price})`;
-        //         li.appendChild(document.createTextNode(text));
-        //         flowerList.appendChild(li);
-        //     });
-        // }
 
         const showFlower = (products) => {
             flowerList.innerHTML = ''; // Clear the list
@@ -67,6 +60,7 @@
 
                                             <div class="card-body card-hover-effect">
                                         <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">${product.categoryName}</p>
                                         <p class="card-text">\$${product.price}</p>
                                     </div>
                                 </div>
@@ -80,6 +74,20 @@
             fetch(url).then(response => response.json()).then(showFlowers);
         }
 
+        // Simple method to display all product
+        /*
+        const showFlower = (products) => {
+
+            flowerList.innerHTML = '';
+
+            products.forEach(product => {
+                let li = document.createElement("li");
+                let text = `${product.name}:(\$${product.price})`;
+                li.appendChild(document.createTextNode(text));
+                flowerList.appendChild(li);
+            });
+        }
+        */
 
         // Apply sync to load data before display initial page
         /*

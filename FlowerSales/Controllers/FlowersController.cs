@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Diagnostics.Metrics;
+using System.Xml.Linq;
 
 namespace FlowerSales.Controllers
 {
@@ -93,13 +95,10 @@ namespace FlowerSales.Controllers
                 filter &= Builders<Product>.Filter.Lte(p => p.price, queryParameters.MaxPrice.Value);
             }
 
-            if (!string.IsNullOrEmpty(queryParameters.SearchTerm))
+            if (!string.IsNullOrEmpty(queryParameters.Category))
             {
-                string searchTerm = queryParameters.SearchTerm.ToLower();
-                filter &= Builders<Product>.Filter.Or(
-                    Builders<Product>.Filter.Where(p => p.categoryName.ToLower().Contains(searchTerm)),
-                    Builders<Product>.Filter.Where(p => p.name.ToLower().Contains(searchTerm))
-                );
+                string category = queryParameters.Category.ToLower();
+                filter &= Builders<Product>.Filter.Where(p => p.categoryName.ToLower().Contains(category));                
             }
 
             if (!string.IsNullOrEmpty(queryParameters.Name))
@@ -299,13 +298,10 @@ namespace FlowerSales.Controllers
                 filter &= Builders<Product>.Filter.Lte(p => p.price, queryParameters.MaxPrice.Value);
             }
 
-            if (!string.IsNullOrEmpty(queryParameters.SearchTerm))
+            if (!string.IsNullOrEmpty(queryParameters.Category))
             {
-                string searchTerm = queryParameters.SearchTerm.ToLower();
-                filter &= Builders<Product>.Filter.Or(
-                    Builders<Product>.Filter.Where(p => p.categoryName.ToLower().Contains(searchTerm)),
-                    Builders<Product>.Filter.Where(p => p.name.ToLower().Contains(searchTerm))
-                );
+                string category = queryParameters.Category.ToLower();
+                filter &= Builders<Product>.Filter.Where(p => p.categoryName.ToLower().Contains(category));
             }
 
             if (!string.IsNullOrEmpty(queryParameters.Name))
