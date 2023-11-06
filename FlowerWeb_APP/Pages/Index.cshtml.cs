@@ -7,14 +7,16 @@ namespace FlowerWeb_APP.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
+        public string FlowerName { get; set; }  
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
         }
 
-        public void OnGet()
+        public void OnGet(string name)
         {
-
+            FlowerName = name;
         }
     }
 }

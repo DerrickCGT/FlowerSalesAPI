@@ -1,62 +1,107 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = Model.FlowerName != null ? "Search results" : "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to Flower Sales</h1>    
 </div>
 
-<ul id="flowerList"></ul>
+@* <ul id="flowerList"></ul> *@
+
+<div class="container">
+    <div class="row" id="flowerList">
+        <!-- Cards will be injected here by the script -->
+    </div>
+</div>
 
 @section Scripts{
     <script>
 
-        let url = "https://localhost:7059/products"
+        const params = new URLSearchParams(window.location.search);
+        const flowerName = params.get('flowerName');
+
+        let url = `https://localhost:7059/products${flowerName ? '?Name=' + encodeURIComponent(flowerName) : ''}`;
 
         let flowerList = document.getElementById("flowerList")
 
         fetch(url, {
             headers: {
-                "X-API-version": "2"
+                "X-API-version": "1"
             }
         })  
         .then(response => response.json())
         .then(data => showFlower(data))
         .catch(ex => {
-            alert("error");
+            alert("error" + ex);
             console.error(ex);
         });
 
+        // const showFlower = (products) => {
+
+        //     flowerList.innerHTML = '';
+
+        //     products.forEach(product => {
+        //         let li = document.createElement("li");
+        //         let text = `${product.name}:(\$${product.price})`;
+        //         li.appendChild(document.createTextNode(text));
+        //         flowerList.appendChild(li);
+        //     });
+        // }
+
         const showFlower = (products) => {
+            flowerList.innerHTML = ''; // Clear the list
+
             products.forEach(product => {
-                let li = document.createElement("li");
-                let text = `${product.name}:(\$${product.price})`;
-                li.appendChild(document.createTextNode(text));
-                flowerList.appendChild(li);
-            })
+                // Create a card for each product
+                let colDiv = document.createElement("div");
+                colDiv.className = 'col-lg-4 col-md-6 mb-4'; // Bootstrap classes for responsive layout
+
+                // Use Bootstrap card classes to style the product info
+                colDiv.innerHTML = `
+                                 <div class="card h-100 text-center">
+                                    <div class="card-header">
+                                        <img src="#" class="card-img-top" alt="${product.name}">
+                                    </div>
+
+                                            <div class="card-body card-hover-effect">
+                                        <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">\$${product.price}</p>
+                                    </div>
+                                </div>
+                                `;
+
+                flowerList.appendChild(colDiv);
+            });
         }
 
-        // document.addEventListener("DOMContentLoaded", async function () {
-        //     let url = "https://localhost:7059/products";
+        if (searchTerm) {
+            fetch(url).then(response => response.json()).then(showFlowers);
+        }
 
-        //     let flowerList = document.getElementById("flowerList");
 
-        //     try {
-        //         const response = await fetch(url);
-        //         if (!response.ok) {
-        //             throw new Error("Network response was not ok.");
-        //         }
-        //         const data = await response.json();
-        //         showFlower(data);
-        //     } catch (ex) {
-        //         console.error(ex);
-        //         alert("An error occurred while fetching data.");
-        //     }
+        // Apply sync to load data before display initial page
+        /*
+        document.addEventListener("DOMContentLoaded", async function () {
+            let url = "https://localhost:7059/products";
+
+            let flowerList = document.getElementById("flowerList");
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error("Network response was not ok.");
+                }
+                const data = await response.json();
+                showFlower(data);
+            } catch (ex) {
+                console.error(ex);
+                alert("An error occurred while fetching data.");
+            }
                     
-        // })
+        })
+        */
         
 
         // function showFlower(products) {

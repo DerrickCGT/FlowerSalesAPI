@@ -23,9 +23,17 @@ a {
   border-color: #1861ac;
 }
 
+.btn-custom-hover:hover {
+    background-color: #6c757d !important; /* Bootstrap's grey */
+    border-color: #6c757d !important; /* Bootstrap's grey */
+    color: #fff !important; /* Change text color if needed */
+}
+
+
 .border-top {
   border-top: 1px solid #e5e5e5;
 }
+
 .border-bottom {
   border-bottom: 1px solid #e5e5e5;
 }
