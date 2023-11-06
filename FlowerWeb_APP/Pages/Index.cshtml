@@ -18,61 +18,60 @@
 
 @section Scripts{
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const searchTerm = params.get('searchTerm');
-        const searchType = params.get('searchType')
 
-        let baseUrl = `https://localhost:7059/products`;
+        document.addEventListener('DOMContentLoaded', function () { 
+            const params = new URLSearchParams(window.location.search);
+            const searchTerm = params.get('searchTerm');
+            const searchType = params.get('searchType')
 
-        let url = baseUrl;
-        if (searchType && searchTerm) {
-            url += `?${searchType}=${encodeURIComponent(searchTerm)}`;
-        } 
+            let baseUrl = `https://localhost:7059/products`;
 
-        let flowerList = document.getElementById("flowerList")
+            let url = baseUrl;
+            if (searchType && searchTerm) {
+                url += `?${searchType}=${encodeURIComponent(searchTerm)}`;
+            } 
 
-        fetch(url, {
-            headers: {
-                "X-API-version": "1"
+            let flowerList = document.getElementById("flowerList")            
+
+            const showFlower = (products) => {
+                flowerList.innerHTML = ''; // Clear the list
+
+                products.forEach(product => {
+                    // Create a card for each product
+                    let colDiv = document.createElement("div");
+                    colDiv.className = 'col-lg-4 col-md-6 mb-4'; 
+
+                    // Use Bootstrap card classes to style the product info
+                    colDiv.innerHTML = `
+                                     <div class="card h-100 text-center">
+                                        <div class="card-header">
+                                            <img src="#" class="card-img-top" alt="${product.name}">
+                                        </div>
+                                        <div class="card-body card-hover-effect">
+                                            <h5 class="card-title">${product.name}</h5>
+                                            <p class="card-text">${product.categoryName}</p>
+                                            <p class="card-text">\$${product.price}</p>
+                                        </div>
+                                    </div>
+                                    `;
+
+                    flowerList.appendChild(colDiv);
+                });
             }
-        })  
-        .then(response => response.json())
-        .then(data => showFlower(data))
-        .catch(ex => {
-            alert("error" + ex);
-            console.error(ex);
-        });
 
-        const showFlower = (products) => {
-            flowerList.innerHTML = ''; // Clear the list
-
-            products.forEach(product => {
-                // Create a card for each product
-                let colDiv = document.createElement("div");
-                colDiv.className = 'col-lg-4 col-md-6 mb-4'; // Bootstrap classes for responsive layout
-
-                // Use Bootstrap card classes to style the product info
-                colDiv.innerHTML = `
-                                 <div class="card h-100 text-center">
-                                    <div class="card-header">
-                                        <img src="#" class="card-img-top" alt="${product.name}">
-                                    </div>
-
-                                            <div class="card-body card-hover-effect">
-                                        <h5 class="card-title">${product.name}</h5>
-                                        <p class="card-text">${product.categoryName}</p>
-                                        <p class="card-text">\$${product.price}</p>
-                                    </div>
-                                </div>
-                                `;
-
-                flowerList.appendChild(colDiv);
+            fetch(url, {
+                headers: {
+                    "X-API-version": "1"
+                }
+            })
+            .then(response => response.json())
+            .then(data => showFlower(data))
+            .catch(ex => {
+                alert("error" + ex);
+                console.error(ex);
             });
-        }
-
-        if (searchTerm) {
-            fetch(url).then(response => response.json()).then(showFlowers);
-        }
+        })
+     
 
         // Simple method to display all product
         /*

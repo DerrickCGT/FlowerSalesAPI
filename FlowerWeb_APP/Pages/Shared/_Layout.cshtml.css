@@ -23,10 +23,12 @@ a {
   border-color: #1861ac;
 }
 
-.btn-custom-hover:hover {
-    background-color: #6c757d !important; /* Bootstrap's grey */
-    border-color: #6c757d !important; /* Bootstrap's grey */
-    color: #fff !important; /* Change text color if needed */
+.btn-grey-hover:hover,
+.dropdown.show .btn-grey-hover,
+.btn-grey-hover[aria-expanded="true"] {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+    color: #fff !important;
 }
 
 
