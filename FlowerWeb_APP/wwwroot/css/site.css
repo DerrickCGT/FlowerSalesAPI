@@ -18,7 +18,7 @@ body {
 }
 
 .card-hover-effect:hover {
-    background-color: black !important;
+    background-color: #6c757d !important;
     color: white !important;
     cursor: pointer; /* Optional: Changes the cursor on hover to indicate an action can be taken */
 }

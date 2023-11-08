@@ -12,13 +12,13 @@
 
 <div class="container">
     <div class="row" id="flowerList">
-        <!-- Cards will be injected here by the script -->
+        <!-- Cards will be injected here by the JavaScript -->
     </div>
 </div>
 
 @section Scripts{
     <script>
-
+        //Optional: json async with multi-thread
         document.addEventListener('DOMContentLoaded', function () { 
             const params = new URLSearchParams(window.location.search);
             const searchTerm = params.get('searchTerm');
@@ -41,7 +41,6 @@
                     let colDiv = document.createElement("div");
                     colDiv.className = 'col-lg-4 col-md-6 mb-4'; 
 
-                    // Use Bootstrap card classes to style the product info
                     colDiv.innerHTML = `
                                      <div class="card h-100 text-center">
                                         <div class="card-header">
@@ -58,7 +57,7 @@
                     flowerList.appendChild(colDiv);
                 });
             }
-
+            //Should applied hardcoded enumerate headers 
             fetch(url, {
                 headers: {
                     "X-API-version": "1"
@@ -72,7 +71,7 @@
             });
         })
      
-
+        
         // Simple method to display all product
         /*
         const showFlower = (products) => {
@@ -120,6 +119,48 @@
         //     });
         // };
 
+        //<button id="postButton">Create Product</button>
+
+
+    //    document.addEventListener('DOMContentLoaded', function () {
+    //    // Find the button element by its id
+    //    const postButton = document.getElementById('postButton');
+
+    //    postButton.addEventListener('click', function () {
+    //        // Define the JSON data to send in the POST request
+    //        const postData = {
+    //            name: "abcd",
+    //            storeLocation: "new location",
+    //            postcode: 0,
+    //            price: 0,
+    //            isAvailable: true,
+    //            categoryName: "Additional"
+    //        };
+
+            //// Make a POST request when the button is clicked
+            //fetch('https://localhost:7059/products', {
+            //    method: 'POST',
+            //    headers: {
+            //        'Accept': '*/*',
+            //        'Content-Type': 'application/json'
+            //    },
+            //    body: JSON.stringify(postData)
+            //})
+    //        .then(response => {
+    //            if (response.ok) {
+    //                // Request was successful, handle the response here
+    //                alert('Product created successfully.');
+    //            } else {
+    //                // Request failed, handle the error here
+    //                alert('Failed to create the product.');
+    //            }
+    //        })
+    //        .catch(error => {
+    //            console.error('Error:', error);
+    //            alert('An error occurred while creating the product.');
+    //        });
+    //    });
+    //});
 
     </script>
 }

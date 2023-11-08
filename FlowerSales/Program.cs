@@ -14,20 +14,21 @@ builder.Services.AddSingleton<MongoDBContext>();
 builder.Services.AddScoped<FlowerDBSeed>();
 
 //Add services to the container.
-
 builder.Services.AddControllers();
+
+//Create API versioning with Header
 builder.Services.AddApiVersioning(options =>
 {
     options.ReportApiVersions = true;
     options.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
     options.AssumeDefaultVersionWhenUnspecified = true;
 
-    options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
+    //options.ApiVersionReader = new QueryStringApiVersionReader("FlowerMongo-Api-Version");
 
-    //options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
-
+    options.ApiVersionReader = new HeaderApiVersionReader("X-API-version");
 });
 
+//Create API versioning format
 builder.Services.AddVersionedApiExplorer(options =>
 {   // this says we have V and then the version number
     options.GroupNameFormat = "'v'VVV";
@@ -38,6 +39,7 @@ builder.Services.AddVersionedApiExplorer(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Implement Cross Origin Resource Sharing (CORS)
 builder.Services.AddCors(option =>
 {
     option.AddDefaultPolicy(builder =>
