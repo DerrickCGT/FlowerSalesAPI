@@ -25,61 +25,6 @@ namespace FlowerSales.Controllers
             _productCollection = mongoDbService._productCollection;            
         }
 
-        //[HttpGet]
-        //[Route("test")]
-        //public async Task<ActionResult> GetAll2()
-        //{
-        //    return Ok(_productCollection.AsQueryable());
-        //}
-
-        // Async method on IQueryable do not support ToListAsync with System.InvalidOperationException.
-        // This method work without async and mainly IActionResult or ActionResult
-        //[HttpGet]
-        //[Route("test2")]
-        //public ActionResult GetAllProducts2([FromQuery] ProductQueryParameters queryParameters)
-        //{
-        //    IQueryable<Product> products = _productCollection.AsQueryable();
-
-        //    if (queryParameters.MinPrice != null)
-        //    {
-        //        products = products.Where(
-        //            p => p.price >= queryParameters.MinPrice.Value);
-        //    }
-
-        //    if (queryParameters.MaxPrice != null)
-        //    {
-        //        products = products.Where(
-        //            p => p.price <= queryParameters.MaxPrice.Value);
-        //    }
-
-        //    if (!string.IsNullOrEmpty(queryParameters.SearchTerm))
-        //    {
-        //        products = products.Where(
-        //            p => p.categoryName.ToLower().Contains(queryParameters.SearchTerm.ToLower()) ||
-        //                 p.name.ToLower().Contains(queryParameters.SearchTerm.ToLower()));
-        //    }
-
-
-        //    if (!string.IsNullOrEmpty(queryParameters.Name))
-        //    {
-        //        products = products.Where(
-        //            p => p.name.ToLower().Contains(
-        //                queryParameters.Name.ToLower()));
-        //    }
-
-        //    if (!string.IsNullOrEmpty(queryParameters.SortBy) && queryParameters.SortOrder == "asc")
-        //    {
-        //        products = products.OrderByCustom(queryParameters.SortBy, queryParameters.SortOrder); // not working
-        //    }
-
-        //    products = products
-        //            .Skip(queryParameters.Size * (queryParameters.Page - 1))
-        //            .Take(queryParameters.Size);
-
-
-        //    return Ok(products.ToList());
-        //}
-
         [HttpGet]        
         public async Task<ActionResult> GetAllProducts([FromQuery] ProductQueryParameters queryParameters)
         {
@@ -404,6 +349,60 @@ namespace FlowerSales.Controllers
             return NoContent();
         }
 
+        //[HttpGet]
+        //[Route("test")]
+        //public async Task<ActionResult> GetAll2()
+        //{
+        //    return Ok(_productCollection.AsQueryable());
+        //}
+
+        // Async method on IQueryable do not support ToListAsync with System.InvalidOperationException.
+        // This method work without async and mainly IActionResult or ActionResult
+        //[HttpGet]
+        //[Route("test2")]
+        //public ActionResult GetAllProducts2([FromQuery] ProductQueryParameters queryParameters)
+        //{
+        //    IQueryable<Product> products = _productCollection.AsQueryable();
+
+        //    if (queryParameters.MinPrice != null)
+        //    {
+        //        products = products.Where(
+        //            p => p.price >= queryParameters.MinPrice.Value);
+        //    }
+
+        //    if (queryParameters.MaxPrice != null)
+        //    {
+        //        products = products.Where(
+        //            p => p.price <= queryParameters.MaxPrice.Value);
+        //    }
+
+        //    if (!string.IsNullOrEmpty(queryParameters.SearchTerm))
+        //    {
+        //        products = products.Where(
+        //            p => p.categoryName.ToLower().Contains(queryParameters.SearchTerm.ToLower()) ||
+        //                 p.name.ToLower().Contains(queryParameters.SearchTerm.ToLower()));
+        //    }
+
+
+        //    if (!string.IsNullOrEmpty(queryParameters.Name))
+        //    {
+        //        products = products.Where(
+        //            p => p.name.ToLower().Contains(
+        //                queryParameters.Name.ToLower()));
+        //    }
+
+        //    if (!string.IsNullOrEmpty(queryParameters.SortBy) && queryParameters.SortOrder == "asc")
+        //    {
+        //        products = products.OrderByCustom(queryParameters.SortBy, queryParameters.SortOrder); // not working
+        //    }
+
+        //    products = products
+        //            .Skip(queryParameters.Size * (queryParameters.Page - 1))
+        //            .Take(queryParameters.Size);
+
+
+        //    return Ok(products.ToList());
+        //}
 
 
 
