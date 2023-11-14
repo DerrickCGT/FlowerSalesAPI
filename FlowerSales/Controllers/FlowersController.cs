@@ -155,8 +155,10 @@ namespace FlowerSales.Controllers
         public async Task<IActionResult> Post([FromBody] Product product)
         {
             await _productCollection.InsertOneAsync(product);
-
-            return CreatedAtAction(nameof(GetProduct), new { id = product._id }, product);
+            
+            // return output using method GetProduct for the new id 
+            return CreatedAtAction(nameof(GetProduct), new { id = product._id }, product); 
+            
         }
 
 
